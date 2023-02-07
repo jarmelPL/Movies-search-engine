@@ -1,11 +1,16 @@
 const titleInput = document.querySelector('.title')
 const btn = document.querySelector('.start')
-const moviesDiv = document.querySelector('.movies_list')
+const returnBtn = document.querySelector('.return')
+const moviesUl = document.querySelector('.movies_list')
 const apiKEY = '680664962b614346e4f587e2fdbff113'
 let titleValue;
 let results=[];
 let moviesInfo={};
 let page=1
+
+if (window.location.search.includes("?movie=")) {
+    console.log('lol')
+} else { startApp() }
 
 function startApp() {
     titleValue=titleInput.value
@@ -21,7 +26,7 @@ function startApp() {
                     title: movie.title,
                     image: 'https://image.tmdb.org/t/p/original'+movie.poster_path,
                     id: movie.id,
-                    note: movie.vote_average,
+                    rate: movie.vote_average,
                     date: movie.release_date
                 }
             })
@@ -32,24 +37,44 @@ function startApp() {
             }
             console.log(moviesInfo)
         })
+        .then(addMovies)
         .catch(err => console.error(err));
-
-    addMovies(moviesInfo)
 }
 
-function addMovies(moviesInfo) {
-    const newUlList= document.createElement('ul')
-    moviesDiv.appendChild(newUlList)
-
-    newUlList.append(addMoviesToUl(moviesInfo))
-}
-
-function addMoviesToUl(moviesInfo) {
-    return results.map(item => {
-        const newLi = document.createElement('li')
-        newLi.textContent=item.title
+function addMovies() {
+    moviesUl.textContent=''
+    results.forEach(item => {
+        moviesUl.appendChild(createLi(item))
     })
+}
+
+function createLi(item) {
+    const liElement = document.createElement("li");
+
+    const anchorElement = document.createElement('a')
+    anchorElement.href=`?movie=${item.id}&search=${titleInput.value}`
+    const posterElement = document.createElement('img')
+    posterElement.setAttribute('src',item.image)
+    const infoContainerElement = document.createElement('div')
+
+    const infoTitle = document.createElement('h3')
+    infoTitle.innerText=item.title
+    const infoDate = document.createElement('div')
+    infoDate.innerText=item.date
+    const infoRate = document.createElement('div')
+    infoRate.innerText = item.rate
+
+    infoContainerElement.append(infoTitle,infoDate,infoRate)
+
+    anchorElement.append(posterElement, infoContainerElement)
+
+    liElement.appendChild(anchorElement)
+
+    return liElement
 }
 
 btn.addEventListener('click',startApp)
 
+returnBtn.addEventListener('click',()=>{
+    window.location.href='?search='+(window.location.search).split('&search=')[1]
+})

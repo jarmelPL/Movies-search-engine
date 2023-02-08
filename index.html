@@ -11,10 +11,15 @@
 <body>
     <div class="search_panel">
         <button class="return">🔙</button>
-        <input type="text" class="title">
+        <input type="text" class="title" placeholder="Enter a title">
         <button class="start">🔍</button>
     </div>
     <ul class="movies_list"></ul>
+    <div class="pages_scroller">
+        <button class="page_btn page-previous" disabled><i class="fa-regular fa-circle-left"></i></button>
+        <span class="page-current">1</span>/<span class="page-all">20</span>
+        <button class="page_btn page-next"><i class="fa-regular fa-circle-right"></i></button>
+    </div>
     <script src="script.js"></script>
 </body>
 </html>

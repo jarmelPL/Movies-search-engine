@@ -1,7 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    font-size: 62.5%;
+    padding: 1em;
+}
+
+.search_panel {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1em;
+    padding: 0.5em;
+}
+
+.search_panel button, input {
+    font-size: 1.5rem;
+    padding: 1rem;
+    border: 1px solid black;
+    box-shadow: 0.2em 0.2em 0.2em black;
+    background-color: rgb(251, 251, 251);
+}
+.return {
+    justify-self: center;
+}
+
 .movies_list {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(10, 1fr);
+    /* grid-template-rows: repeat(2, 1fr); */
     gap: 0.5em;
 }
 
@@ -17,9 +45,54 @@ li {
     border: 1px solid black;
     padding: 0.5em;
 }
+
 img {
     margin: 0 auto;
-    width: 100%;
-    height: 100%;
+    max-width: 100%;
     object-fit: cover;
+    aspect-ratio: 482/722;
+}
+
+.info-container {
+    padding: 0.5em;
+    font-size: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+    text-align: center;
+}
+
+.pages_scroller {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+    gap: 0.5em;
+    padding: 0.5em;
+}
+
+.page_btn {
+    font-size: 3rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+@media (max-width: 1400px) {
+    .movies_list {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+@media (max-width: 992px) {
+    .movies_list {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media (max-width: 768px) {
+    .movies_list {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }

@@ -48,6 +48,7 @@ function startApp() {
 }
 
 function addMovies() {
+    document.querySelector('body').style.height='auto'
     moviesUl.textContent=''
     results.forEach(item => {
         moviesUl.appendChild(createLi(item))
@@ -58,7 +59,7 @@ function createLi(item) {
     const liElement = document.createElement("li");
 
     const anchorElement = document.createElement('a')
-    anchorElement.href=`?movie=${item.id}&search=${titleInput.value}`
+    anchorElement.href=`?movie=${item.id}`
     anchorElement.setAttribute('target','_blank')
 
     const posterContainerElement = document.createElement('div')
@@ -97,7 +98,7 @@ function createLi(item) {
 }
 
 function addPagesScroller() {
-    if (moviesInfo.total_pages===1) {
+    if (moviesInfo.total_pages===1 || page===moviesInfo.total_pages) {
         nextPageBtn.setAttribute('disabled','')
     } else {
         nextPageBtn.removeAttribute('disabled')
@@ -116,7 +117,6 @@ btn.addEventListener('click',()=> {
 
 previousPageBtn.addEventListener('click',()=>{
     page--
-    nextPageBtn.removeAttribute('disabled')
     if (page===1) {previousPageBtn.setAttribute('disabled','')}
     startApp()
 })
@@ -124,7 +124,6 @@ previousPageBtn.addEventListener('click',()=>{
 nextPageBtn.addEventListener('click',()=>{
     page++
     previousPageBtn.removeAttribute('disabled')
-    if (page===moviesInfo.total_pages) {nextPageBtn.setAttribute('disabled','')}
     startApp()
 })
 

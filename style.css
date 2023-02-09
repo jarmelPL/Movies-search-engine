@@ -55,8 +55,8 @@ a {
 }
 
 li {
-    background-color: rgb(255, 255, 255);
-    background-image: radial-gradient(circle, rgb(60, 160, 35) 0%, rgb(54, 44, 19) 100%);
+    background-color: rgba(255, 255, 255, 0.1);
+    background-image: radial-gradient(circle, rgba(60, 160, 35, 0.9) 0%, rgba(54, 44, 19, 0.9) 100%);
     box-shadow: 0.5em 0.5em 0.5em rgb(0, 0, 0);
     border-radius: 0.5em;
     overflow: hidden;

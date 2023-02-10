@@ -18,33 +18,34 @@ if (window.location.search.includes("?movie=")) {
 } else { startApp() }
 
 function startApp() {
-    titleValue=titleInput.value
+    if (titleInput.value!='') {
+        titleValue=titleInput.value
 
-    let URL = `https://api.themoviedb.org/3/search/movie?api_key=${apiKEY}&language=en-US&query=${titleValue}&page=${page}&include_adult=false`
+        let URL = `https://api.themoviedb.org/3/search/movie?api_key=${apiKEY}&language=en-US&query=${titleValue}&page=${page}&include_adult=false`
 
-    fetch(URL)
-        .then(response => response.json())
-        // .then(results => console.log(results))
-        .then(response => {
-            results = response.results.map(movie => {
-                return {
-                    title: movie.title,
-                    image: movie.poster_path===null ? 'img/not-found.jpg' : 'https://image.tmdb.org/t/p/original'+movie.poster_path,
-                    id: movie.id,
-                    rate: movie.vote_average,
-                    rate_count: movie.vote_count,
-                    date: movie.release_date
+        fetch(URL)
+            .then(response => response.json())
+            // .then(results => console.log(results))
+            .then(response => {
+                results = response.results.map(movie => {
+                    return {
+                        title: movie.title,
+                        image: movie.poster_path===null ? 'img/not-found.jpg' : 'https://image.tmdb.org/t/p/original'+movie.poster_path,
+                        id: movie.id,
+                        rate: movie.vote_average,
+                        rate_count: movie.vote_count,
+                        date: movie.release_date
+                    }
+                })
+                moviesInfo= {
+                    movies: results,
+                    total_pages: response.total_pages
                 }
+                console.log(moviesInfo)
             })
-            moviesInfo= {
-                movies: results,
-                total_pages: response.total_pages
-            }
-            console.log(moviesInfo)
-        })
-        .then(addMovies)
-        .then(addPagesScroller)
-        .catch(err => console.error(err));
+            .then(addMovies)
+            .catch(err => console.error(err));
+    }
 }
 
 function addMovies() {
@@ -113,6 +114,7 @@ function addPagesScroller() {
 btn.addEventListener('click',()=> {
     page=1
     startApp()
+    addPagesScroller()
 })
 
 previousPageBtn.addEventListener('click',()=>{

@@ -1,5 +1,5 @@
 const titleInput = document.querySelector('.title')
-const btn = document.querySelector('.start')
+const searchBtn = document.querySelector('.start')
 const returnBtn = document.querySelector('.return')
 const moviesUl = document.querySelector('.movies_list')
 const previousPageBtn = document.querySelector('.page-previous')
@@ -34,7 +34,7 @@ function startApp() {
                         id: movie.id,
                         rate: movie.vote_average,
                         rate_count: movie.vote_count,
-                        date: movie.release_date
+                        date: movie.release_date || 'Lack of data' 
                     }
                 })
                 moviesInfo= {
@@ -44,7 +44,10 @@ function startApp() {
                 console.log(moviesInfo)
             })
             .then(addMovies)
+            .then(addPagesScroller)
             .catch(err => console.error(err));
+    } else { 
+        titleInput.setAttribute('placeholder','Wpisz coś ciulu')
     }
 }
 
@@ -111,10 +114,15 @@ function addPagesScroller() {
 
 
 
-btn.addEventListener('click',()=> {
+searchBtn.addEventListener('click',()=> {
     page=1
     startApp()
-    addPagesScroller()
+})
+titleInput.addEventListener('keydown', e => {
+    if (e.key=="Enter") {
+        page=1
+        startApp()
+    }
 })
 
 previousPageBtn.addEventListener('click',()=>{

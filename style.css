@@ -2,7 +2,9 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Chivo', sans-serif;
 }
+
 html {
     font-size: 62.5%;
 }
@@ -16,15 +18,14 @@ body {
 .app {
     height: 100%;
     width: 100%;
-    padding: 1em;
-    /* background-color: rgba(0, 0, 0, 0.5); */
+    padding: 1em 1em 2em;
 }
 
 .search_panel {
     display: flex;
     justify-content: flex-end;
     gap: 1em;
-    padding: 0.5em;
+    padding: 0em 0em 1em ;
 }
 
 .search_panel button, input {
@@ -41,7 +42,6 @@ body {
 .movies_list {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
-    /* grid-template-rows: repeat(2, 1fr); */
     gap: 1.5em;
 }
 
@@ -52,6 +52,7 @@ ul {
 a {
     text-decoration: none;
     color: rgb(255, 255, 255);
+    /* font-weight: bold; */
 }
 
 li {
@@ -67,16 +68,26 @@ img {
     max-width: 100%;
     object-fit: cover;
     aspect-ratio: 482/722;
+    box-shadow: 0em 0.2em 2em rgb(60, 160, 35);
 }
 
 .info-container {
-    padding: 0.5em;
-    font-size: 2rem;
+    position: relative;
+    padding: 0.5em 1em;
+    font-size: 1.5rem;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.5em;
     text-align: center;
+    font-style: italic;
+}
+
+.info-title {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 1.75rem;
+    font-style: normal;
 }
 
 .pages_scroller {
@@ -101,11 +112,13 @@ img {
     color: grey;
 }
 
-/* .page-previous i {
-    opacity: 0;
+/* .themoviedb-info {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-transform: uppercase;
 } */
-
-
 
 @media (max-width: 1400px) {
     .movies_list {

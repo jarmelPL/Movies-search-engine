@@ -21,7 +21,7 @@ function startApp() {
     if (titleInput.value!='') {
         titleValue=titleInput.value
 
-        let URL = `https://api.themoviedb.org/3/search/movie?api_key=${apiKEY}&language=en-US&query=${titleValue}&page=${page}&include_adult=false`
+        let URL = `https://api.themoviedb.org/3/search/movie?api_key=${apiKEY}&language=en-US&query=${titleValue}&page=${page}`
 
         fetch(URL)
             .then(response => response.json())
@@ -79,20 +79,20 @@ function createLi(item) {
     const infoDate = document.createElement('div')
     infoDate.innerText=item.date
 
-    const infoRate = document.createElement('div')
-    const rate = document.createElement('span')
-    rate.innerText = item.rate
-    const count = document.createElement('span')
-    count.innerText = item.rate_count
-    infoRate.append(rate,' / ',count)
+    // const infoRate = document.createElement('div')
+    // const rate = document.createElement('span')
+    // rate.innerText = item.rate
+    // const count = document.createElement('span')
+    // count.innerText = item.rate_count
+    // infoRate.append(rate,' (',count,')')
 
-    infoContainerElement.append(infoTitle,infoDate,infoRate)
+    infoContainerElement.append(infoTitle,infoDate)
     infoContainerElement.classList.add('info-container')
     infoTitle.classList.add('info-title')
     infoDate.classList.add('info-date')
-    infoRate.classList.add('info-rate')
-    rate.classList.add('rate')
-    count.classList.add('count')
+    // infoRate.classList.add('info-rate')
+    // rate.classList.add('rate')
+    // count.classList.add('count')
 
     anchorElement.append(posterContainerElement, infoContainerElement)
 

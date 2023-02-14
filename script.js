@@ -7,6 +7,7 @@ const nextPageBtn = document.querySelector('.page-next')
 const currentPageSpan = document.querySelector('.page-current')
 const allPagesSpan = document.querySelector('.page-all')
 const pagesScroller = document.querySelector('.pages_scroller')
+const theMovieDBInfo = document.querySelector('.themoviedb-info')
 const apiKEY = '680664962b614346e4f587e2fdbff113'
 let titleValue;
 let results=[];
@@ -57,6 +58,7 @@ function addMovies() {
     results.forEach(item => {
         moviesUl.appendChild(createLi(item))
     })
+    theMovieDBInfo.style.display='block'
 }
 
 function createLi(item) {

@@ -30,11 +30,34 @@ body {
 
 .search_panel button, input {
     font-size: 1.5rem;
-    padding: 1rem;
-    border: 1px solid black;
+    padding: 1em;
+    border: none;
     box-shadow: 0.2em 0.2em 0.2em black;
-    background-color: rgb(251, 251, 251);
+    background-color: rgb(230, 235, 225);
+    border-radius: 0.5em;
 }
+
+.search_panel button {
+    cursor: pointer;
+}
+
+.search_panel button:hover {
+    background-color: rgb(205, 210, 200);
+}
+
+.return {
+    display: none;
+}
+
+.search_panel input {
+    width: 20em;
+}
+
+.search_panel button:focus, .search_panel input:focus {
+    background-color: white;
+    outline: 0.1em solid rgb(60, 160, 35);
+}
+
 .return {
     justify-self: center;
 }
@@ -151,6 +174,9 @@ img {
 }
 
 @media (max-width: 992px) {
+    .search_panel input {
+        width: unset;
+    }
     .movies_list {
         grid-template-columns: repeat(4, 1fr);
     }

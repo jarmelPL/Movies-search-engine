@@ -1,3 +1,5 @@
+import { x } from "./detail.js";
+
 const titleInput = document.querySelector('.title')
 const searchBtn = document.querySelector('.start')
 const returnBtn = document.querySelector('.return')
@@ -15,7 +17,7 @@ let moviesInfo={};
 let page=1
 
 if (window.location.search.includes("?movie=")) {
-    console.log('lol')
+    console.log(x)
 } else { startApp() }
 
 function startApp() {
@@ -59,6 +61,7 @@ function addMovies() {
         moviesUl.appendChild(createLi(item))
     })
     theMovieDBInfo.style.display='block'
+    returnBtn.style.display='block'
 }
 
 function createLi(item) {

@@ -85,7 +85,7 @@ li {
     overflow: hidden;
 }
 
-img {
+ul img {
     margin: 0 auto;
     max-width: 100%;
     object-fit: cover;
@@ -163,13 +163,26 @@ img {
     height: 100%;
 }
 
+
+/* DETAIL */
+
+.movie_detail {
+    margin: 0 auto;
+    width: 100rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: aquamarine;
+}
+
+.movie_detail img {
+    height: 20rem
+}
+
+
 @media (max-width: 1400px) {
     .movies_list {
         grid-template-columns: repeat(5, 1fr);
-    }
-    .themoviedb-info {
-        position: absolute;
-        bottom: unset;
     }
 }
 

@@ -1,4 +1,4 @@
-import { x } from "./detail.js";
+import { prepareDetail } from "./detail.js";
 
 const titleInput = document.querySelector('.title')
 const searchBtn = document.querySelector('.start')
@@ -17,7 +17,7 @@ let moviesInfo={};
 let page=1
 
 if (window.location.search.includes("?movie=")) {
-    console.log(x)
+    prepareDetail()
 } else { startApp() }
 
 function startApp() {
@@ -28,15 +28,12 @@ function startApp() {
 
         fetch(URL)
             .then(response => response.json())
-            // .then(results => console.log(results))
             .then(response => {
                 results = response.results.map(movie => {
                     return {
                         title: movie.title,
                         image: movie.poster_path===null ? 'img/not-found.jpg' : 'https://image.tmdb.org/t/p/original'+movie.poster_path,
                         id: movie.id,
-                        rate: movie.vote_average,
-                        rate_count: movie.vote_count,
                         date: movie.release_date || 'Lack of data' 
                     }
                 })
@@ -84,20 +81,10 @@ function createLi(item) {
     const infoDate = document.createElement('div')
     infoDate.innerText=item.date
 
-    // const infoRate = document.createElement('div')
-    // const rate = document.createElement('span')
-    // rate.innerText = item.rate
-    // const count = document.createElement('span')
-    // count.innerText = item.rate_count
-    // infoRate.append(rate,' (',count,')')
-
     infoContainerElement.append(infoTitle,infoDate)
     infoContainerElement.classList.add('info-container')
     infoTitle.classList.add('info-title')
     infoDate.classList.add('info-date')
-    // infoRate.classList.add('info-rate')
-    // rate.classList.add('rate')
-    // count.classList.add('count')
 
     anchorElement.append(posterContainerElement, infoContainerElement)
 
@@ -146,3 +133,5 @@ returnBtn.addEventListener('click',()=>{
     // window.location.href='?search='+(window.location.search).split('&search=')[1]
     window.location.href='./'
 })
+
+export { theMovieDBInfo, pagesScroller, apiKEY }

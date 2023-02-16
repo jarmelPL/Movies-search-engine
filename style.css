@@ -39,6 +39,7 @@ body {
 
 .search_panel button {
     cursor: pointer;
+    transition: background-color .3s;
 }
 
 .search_panel button:hover {
@@ -66,26 +67,28 @@ body {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     gap: 1.5em;
-}
-
-ul {
     list-style-type: none;
 }
 
-a {
+.movies_list a {
     text-decoration: none;
     color: rgb(230, 235, 225);
 }
 
-li {
+.movies_list li {
     background-color: rgba(255, 255, 255, 0.1);
     background-image: radial-gradient(circle, rgba(60, 160, 35, 0.8) 0%, rgba(55, 45, 20, 0.8) 100%);
     box-shadow: 0.5em 0.5em 0.5em rgb(0, 0, 0);
     border-radius: 0.5em;
     overflow: hidden;
+    transition: transform .3s;
 }
 
-ul img {
+.movies_list li:hover {
+    transform: scale(1.02);
+}
+
+.movies_list img {
     margin: 0 auto;
     max-width: 100%;
     object-fit: cover;
@@ -129,6 +132,7 @@ ul img {
     border: none;
     cursor: pointer;
     color: white;
+    transition: transform .3s;
 }
 
 .page_btn[disabled] {
@@ -136,7 +140,6 @@ ul img {
 }
 
 .page_btn:hover {
-    color: rgb(230, 235, 225);
     transform: scale(1.1);
 }
 
@@ -172,17 +175,17 @@ ul img {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(0, 0, 0, 0.75);
+    background-color: rgba(0, 0, 0, 0.8);
     margin-top: 2rem;
     font-size: 2rem;
-    height: 60rem;
+    height: 55rem;
     color: white;
     border-radius: 0.5em;
     overflow: hidden;
 }
 
 .movie_detail img {
-    height: inherit;
+    height: 100%;
     aspect-ratio: 482/722;
 }
 
@@ -203,12 +206,16 @@ ul img {
 
 .overview-detail {
     width: inherit;
+    text-align: justify;
     font-style: italic;
+}
+
+.overview-detail::first-line {
+    font-style: normal;
 }
 
 .vote-average-detail {
     position: absolute;
-    left: 10%;
     bottom: 1.5em;
     left: 1.5em;
     background-color: rgb(0, 0, 0);
@@ -223,6 +230,12 @@ ul img {
     .movies_list {
         grid-template-columns: repeat(5, 1fr);
     }
+    .movie_detail {
+        width: 90rem;
+        height: 50rem;
+    }
+    .info-container-detail {
+        padding: 1em; }
 }
 
 @media (max-width: 992px) {
@@ -236,10 +249,38 @@ ul img {
         background: url('img/bg1280.jpg') no-repeat center center fixed;
         background-size: cover;
     }
+    .movie_detail {
+        width: 75rem;
+        height: 48rem;
+        font-size: 1.75rem;
+    }
+    .info-container-detail .title-detail {
+        font-size: 2rem;
+    }
+
 }
 
 @media (max-width: 768px) {
     .movies_list {
         grid-template-columns: repeat(2, 1fr);
+        gap: 1.5em 5em
+    }
+    .movie_detail {
+        flex-direction: column;
+        width: 30rem;
+        height: auto;
+    }
+    .movie_detail img {
+        width: 100%;
+    }
+    .info-container-detail {
+        gap: 1em;
+    }
+    .production-countries-detail {
+        display: none;
+    }
+    .vote-average-detail {
+        top: 22em;
+        bottom: auto;
     }
 }

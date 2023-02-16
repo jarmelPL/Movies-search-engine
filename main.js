@@ -47,7 +47,7 @@ function startApp() {
             .then(addPagesScroller)
             .catch(err => console.error(err));
     } else { 
-        titleInput.setAttribute('placeholder','Wpisz coś ciulu')
+        titleInput.setAttribute('placeholder','Enter the title')
     }
 }
 

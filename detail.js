@@ -28,7 +28,10 @@ function startFetchDetail() {
                 release_date: movie.release_date,
                 runtime: movie.runtime+" min",
                 vote_average: (movie.vote_average).toFixed(1),
-                vote_count: movie.vote_count
+                vote_count: movie.vote_count,
+                production_countries: movie.production_countries.map(item => {
+                    return " "+item['name']
+                })
             }
         
         console.log(movieDetailsObject)
@@ -50,12 +53,14 @@ function createDetail() {
     posterElement.classList.add('poster-detail')
     infoContainerElement.classList.add('info-container-detail')
 
-    infoContainerElement.append(createInfo(movieDetailsObject.title,'title'),createInfo(movieDetailsObject.release_date,'release-date'),createInfo(movieDetailsObject.genre,'genre'),createInfo(movieDetailsObject.overview,'overview'),createInfo(movieDetailsObject.runtime,'runtime'),createInfo(movieDetailsObject.vote_average,'vote-average'))
+    let productionCountryHeading = movieDetailsObject.production_countries.length > 1 ? "Production countries: <br>" : "Production country: <br>"
+
+    infoContainerElement.append(createInfo(movieDetailsObject.title,'title'),createInfo(movieDetailsObject.release_date,'release-date'),createInfo(productionCountryHeading + movieDetailsObject.production_countries,'production-countries'),createInfo("Genre: <br>" + movieDetailsObject.genre,'genre'),createInfo("Overview: <br>" + movieDetailsObject.overview,'overview'),createInfo(movieDetailsObject.runtime,'runtime'),createInfo(movieDetailsObject.vote_average,'vote-average'))
 }
 
 function createInfo(item,className) {
     const infoElement = document.createElement('div')
-    infoElement.innerText=item
+    infoElement.innerHTML=item
     infoElement.classList.add(className+"-detail")
 
     return infoElement

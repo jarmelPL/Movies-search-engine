@@ -27,7 +27,7 @@ function startFetchDetail() {
                 overview: movie.overview,
                 release_date: movie.release_date,
                 runtime: movie.runtime+" min",
-                vote_average: movie.vote_average,
+                vote_average: (movie.vote_average).toFixed(1),
                 vote_count: movie.vote_count
             }
         
@@ -50,7 +50,7 @@ function createDetail() {
     posterElement.classList.add('poster-detail')
     infoContainerElement.classList.add('info-container-detail')
 
-    infoContainerElement.append(createInfo(movieDetailsObject.title,'title'),createInfo(movieDetailsObject.release_date,'release-date'),createInfo(movieDetailsObject.genre,'genre'),createInfo(movieDetailsObject.overview,'overview'),createInfo(movieDetailsObject.runtime,'runtime'))
+    infoContainerElement.append(createInfo(movieDetailsObject.title,'title'),createInfo(movieDetailsObject.release_date,'release-date'),createInfo(movieDetailsObject.genre,'genre'),createInfo(movieDetailsObject.overview,'overview'),createInfo(movieDetailsObject.runtime,'runtime'),createInfo(movieDetailsObject.vote_average,'vote-average'))
 }
 
 function createInfo(item,className) {

@@ -9,7 +9,7 @@ const nextPageBtn = document.querySelector('.page-next')
 const currentPageSpan = document.querySelector('.page-current')
 const allPagesSpan = document.querySelector('.page-all')
 const pagesScroller = document.querySelector('.pages_scroller')
-const theMovieDBInfo = document.querySelector('.themoviedb-info')
+const theMovieDBInfo = document.querySelector('.themoviedb_info')
 const apiKEY = '680664962b614346e4f587e2fdbff113'
 let titleValue;
 let results=[];
@@ -130,7 +130,6 @@ nextPageBtn.addEventListener('click',()=>{
 })
 
 returnBtn.addEventListener('click',()=>{
-    // window.location.href='?search='+(window.location.search).split('&search=')[1]
     window.location.href='./'
 })
 
